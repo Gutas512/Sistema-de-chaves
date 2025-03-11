@@ -1,0 +1,48 @@
+/* Ajusta a tabela para mais espaço entre colunas e divisões suaves */
+table.styled-table th,
+table.styled-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+/* Estilo suave no cabeçalho da tabela */
+table.styled-table thead {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
+/* Efeito hover nas linhas da tabela */
+table.styled-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Botões menores para ações */
+.table .btn-sm {
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Botão voltar com estilo harmonizado */
+.btn-back {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}

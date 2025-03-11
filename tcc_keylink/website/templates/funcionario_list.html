@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Funcionários</title>
+    <!-- Load the static files tag -->
+    {% load static %}
+
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Lista de Funcionários</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Search Bar -->
+                        <div class="mb-4">
+                            <input type="text" class="form-control" id="search" placeholder="Buscar por nome ou CPF..." onkeyup="searchFuncionarios()">
+                        </div>
+                        <!-- Employee Table -->
+<table class="table table-striped styled-table" id="funcionarioTable">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Função</th>
+            <th>Telefone</th>
+            <th class="acoes">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for funcionario in funcionarios %}
+            <tr>
+                <td>{{ funcionario.id_funcionario }}</td>
+                <td>{{ funcionario.nome_funcionario }}</td>
+                <td>{{ funcionario.funcao_funcionario }}</td>
+                <td>{{ funcionario.telefone_funcionario }}</td>
+                <td>
+                    <a href="{% url 'funcionario_detail' funcionario.id_funcionario %}" class="btn-sm small-btn info">Ver</a>
+                    <a href="{% url 'funcionario_edit' funcionario.id_funcionario %}" class="btn-sm small-btn warn">Editar</a>
+                    <a href="{% url 'funcionario_delete' funcionario.id_funcionario %}" class="btn-sm small-btn danger" onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Botão Adicionar -->
+<div class="card-footer text-center">
+    <a href="{% url 'funcionario_create' %}" class="btn primary">Adicionar Funcionário</a>
+</div>
+
+<!-- Botão Voltar -->
+<div class="text-center mt-3">
+    <a href="{% url 'index' %}" class="btn back">← Voltar</a>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for extra functionality like dropdowns or modals) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Search function for filtering the employee table -->
+    <script>
+        function searchFuncionarios() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let table = document.getElementById('funcionarioTable');
+            let rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                for (let j = 0; j < cells.length - 1; j++) {
+                    let text = cells[j].textContent.toLowerCase();
+                    if (text.indexOf(input) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = match ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

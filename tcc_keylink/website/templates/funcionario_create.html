@@ -1,0 +1,56 @@
+
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <h2>Cadastrar Novo Funcionário</h2>
+
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/fun_create.css' %}">
+
+    <!-- Formulário de Criação de Funcionário -->
+    <form method="POST">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label for="nome_funcionario">Nome:</label>
+        <input type="text" id="nome_funcionario" name="nome_funcionario" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="telefone_funcionario">Telefone:</label>
+        <input type="text" id="telefone_funcionario" name="telefone_funcionario" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="endereco_funcionario">Endereço:</label>
+        <input type="text" id="endereco_funcionario" name="endereco_funcionario" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="funcao_funcionario">Função:</label>
+        <input type="text" id="funcao_funcionario" name="funcao_funcionario" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="cpf_funcionario">CPF:</label>
+        <input type="text" id="cpf_funcionario" name="cpf_funcionario" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_funcionario">Tipo de Funcionário:</label>
+        <select id="tipo_funcionario" name="tipo_funcionario" class="form-control" required>
+          <option value="Quadro">Quadro</option>
+          <option value="Extra Quadro">Extra Quadro</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+  </div>
+{% endblock %}
